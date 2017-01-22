@@ -1,6 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tanguy.rssfeed">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
 
         android:name=".RSSFeedApplication"
@@ -21,6 +24,12 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".view.activity.LoginActivity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".view.activity.SignupActivity"
+            android:theme="@style/AppTheme.Dark" />
     </application>
 
 </manifest>
