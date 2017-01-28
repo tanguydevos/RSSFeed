@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 
+import com.tanguy.rssfeed.RSSFeedApplication;
 import com.tanguy.rssfeed.model.User;
 import com.tanguy.rssfeed.service.RetrofitFactory;
 import com.tanguy.rssfeed.view.activity.SignupActivity;
@@ -15,6 +16,7 @@ public class UserViewModel {
     private Context context;
     private String passwordConfirmation;
     private User user;
+    private RetrofitFactory retrofitFactory = RSSFeedApplication.getInstance().getRetrofitFactory();
 
     public UserViewModel(Context context, User user) {
         this.context = context;
@@ -46,9 +48,8 @@ public class UserViewModel {
     }
 
     public void login(View view) {
-        if (user.login != null && user.password != null) {
-            RetrofitFactory retrofitFactory = new RetrofitFactory();
-            retrofitFactory.getToken(user);
+        if (user.loginValidation()) {
+            retrofitFactory.loginUser(user);
         } else {
             Log.e(TAG, "Missing parameters");
         }
@@ -56,9 +57,11 @@ public class UserViewModel {
     }
 
     public void signup(View view) {
-        Log.d(TAG, user.login);
-        Log.d(TAG, user.password);
-        Log.d(TAG, passwordConfirmation);
+        if (user.signupValidation(passwordConfirmation)) {
+            retrofitFactory.signupUser(user);
+        } else {
+            Log.e(TAG, "Missing parameters");
+        }
     }
 
     public void renderSignup(View view) {

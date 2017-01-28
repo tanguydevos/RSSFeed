@@ -70,10 +70,10 @@
                 android:layout_marginTop="8dp">
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/input_password_confirmation"
+                    android:id="@+id/input_passwordConfirmation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/PasswordConfirmation"
+                    android:hint="@string/passwordConfirmation"
                     android:inputType="textPassword"
                     android:text="@={userViewModel.passwordConfirmation}" />
             </android.support.design.widget.TextInputLayout>
@@ -81,23 +81,27 @@
             <!-- Signup Button -->
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn_signup"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:layout_marginTop="24dp"
                 android:onClick="@{userViewModel::signup}"
                 android:padding="12dp"
-                android:text="@string/createAccount" />
+                android:text="@string/createAccount"
+                android:layout_gravity="center_horizontal"
+                android:width="150dp" />
 
             <TextView
                 android:id="@+id/link_login"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:gravity="center"
                 android:onClick="@{userViewModel::renderLogin}"
                 android:text="@string/alreadyMember"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:padding="12dp"
+                android:layout_gravity="center_horizontal" />
 
         </LinearLayout>
     </ScrollView>

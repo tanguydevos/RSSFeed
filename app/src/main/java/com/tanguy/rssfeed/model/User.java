@@ -13,4 +13,12 @@ public class User {
     public User() {
         super();
     }
+
+    public boolean loginValidation() {
+        return (this.login != null && this.password != null);
+    }
+
+    public boolean signupValidation(String password) {
+        return (this.login != null && this.password != null && this.password.equals(password));
+    }
 }

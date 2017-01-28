@@ -4,7 +4,7 @@
 
     <string name="Logo">Logo</string>
     <string name="Password">Password</string>
-    <string name="PasswordConfirmation">Password confirmation</string>
+    <string name="passwordConfirmation">Confirm password</string>
     <string name="askForNewAccount">No account yet? Create one</string>
     <string name="Login">Login</string>
     <string name="Email">Email</string>
