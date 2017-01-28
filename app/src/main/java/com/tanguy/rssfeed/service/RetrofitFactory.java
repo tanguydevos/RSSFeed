@@ -20,12 +20,15 @@ public class RetrofitFactory {
     private RetrofitService service;
 
     public RetrofitFactory() {
+        // Init the HTTP client to make requests on the API
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(30, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS)
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .build();
 
+        // Retrofit will help us to perform easier HTTP requests / responses
+        // We use JacksonConverter to get JSON through API's responses
         Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
                 .client(okHttpClient)
                 .addConverterFactory(JacksonConverterFactory.create())
@@ -34,6 +37,7 @@ public class RetrofitFactory {
         service = retrofit.create(RetrofitService.class);
     }
 
+    // Attempt to login the user
     public void loginUser(User user) {
         Call<ResponseBody> call = service.loginUser(user);
         call.enqueue(new Callback<ResponseBody>() {
@@ -54,12 +58,12 @@ public class RetrofitFactory {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.d(TAG, call.toString());
                 Log.e(TAG, t.getMessage());
             }
         });
     }
 
+    // Attempt to signup the guest
     public void signupUser(User user) {
         Call<ResponseBody> call = service.signupUser(user);
         call.enqueue(new Callback<ResponseBody>() {

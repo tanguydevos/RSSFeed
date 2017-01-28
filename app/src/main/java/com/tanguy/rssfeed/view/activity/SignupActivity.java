@@ -18,8 +18,7 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.signup_activity);
 
         SignupActivityBinding binding = DataBindingUtil.setContentView(this, R.layout.signup_activity);
-        User user = new User();
-        UserViewModel userViewModel = new UserViewModel(this, user);
+        UserViewModel userViewModel = new UserViewModel(this);
         binding.setUserViewModel(userViewModel);
     }
 }

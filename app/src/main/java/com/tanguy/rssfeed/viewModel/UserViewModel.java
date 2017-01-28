@@ -18,9 +18,9 @@ public class UserViewModel {
     private User user;
     private RetrofitFactory retrofitFactory = RSSFeedApplication.getInstance().getRetrofitFactory();
 
-    public UserViewModel(Context context, User user) {
+    public UserViewModel(Context context) {
         this.context = context;
-        this.user = user;
+        this.user = new User();
     }
 
     public String getLogin() {
@@ -49,16 +49,16 @@ public class UserViewModel {
 
     public void login(View view) {
         if (user.loginValidation()) {
-            retrofitFactory.loginUser(user);
+            Log.d(TAG, user.login);
+//            retrofitFactory.loginUser(user);
         } else {
             Log.e(TAG, "Missing parameters");
         }
-
     }
 
     public void signup(View view) {
         if (user.signupValidation(passwordConfirmation)) {
-            retrofitFactory.signupUser(user);
+//            retrofitFactory.signupUser(user);
         } else {
             Log.e(TAG, "Missing parameters");
         }
