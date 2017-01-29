@@ -8,6 +8,7 @@ import com.tanguy.rssfeed.R;
 
 
 public class SettingsFragment extends PreferenceFragment {
+    private static final String TAG = "SettingsFragment";
 
     public static Fragment newInstance() {
         return new SettingsFragment();
@@ -20,4 +21,5 @@ public class SettingsFragment extends PreferenceFragment {
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.preferences);
     }
+
 }

@@ -27,7 +27,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="24dp"
                 android:contentDescription="@string/logo"
-                android:src="@drawable/logo" />
+                android:src="@mipmap/ic_launcher" />
 
             <!-- Email Label -->
             <android.support.design.widget.TextInputLayout
@@ -65,25 +65,25 @@
                 android:id="@+id/btn_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="24dp"
                 android:layout_marginTop="24dp"
+                android:width="150dp"
                 android:onClick="@{userViewModel::login}"
                 android:padding="12dp"
-                android:text="@string/login"
-                android:layout_gravity="center_horizontal"
-                android:width="150dp" />
+                android:text="@string/login" />
 
             <TextView
                 android:id="@+id/link_signup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="24dp"
                 android:gravity="center"
                 android:onClick="@{userViewModel::renderSignup}"
-                android:text="@string/askForNewAccount"
-                android:textSize="16sp"
                 android:padding="12dp"
-                android:layout_gravity="center_horizontal" />
+                android:text="@string/askForNewAccount"
+                android:textSize="16sp" />
 
         </LinearLayout>
     </ScrollView>

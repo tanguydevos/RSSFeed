@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import com.tanguy.rssfeed.R;
@@ -27,22 +26,26 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Load the layout for MainActivity
+        setContentView(R.layout.activity_main);
+        // Init the bottom navigation view to select appropriate fragment on click
+        mBottomNav = (BottomNavigationView) findViewById(R.id.navigation);
+        mBottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                selectFragment(item);
+                return true;
+            }
+        });
         // If token doesn't exist, start LoginActivity
-        if (sharedPreferences.getString("token", null) != null) {
+        if (!sharedPreferences.getBoolean("rememberMe", true)
+                || sharedPreferences.getString("token", null) == null) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         } else {
-            setContentView(R.layout.activity_main);
-            mBottomNav = (BottomNavigationView) findViewById(R.id.navigation);
-            mBottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    selectFragment(item);
-                    return true;
-                }
-            });
+
+            // Launch by default the home fragment
             launchHomeFragment();
-            //TODO faire quelque chose ici !
         }
     }
 
@@ -63,10 +66,8 @@ public class MainActivity extends AppCompatActivity {
                 frag = SettingsFragment.newInstance();
                 break;
         }
-
-//         update selected item
+        //  update selected item
         mSelectedItem = item.getItemId();
-
         if (frag != null) {
             FragmentTransaction ft = getFragmentManager().beginTransaction();
             ft.replace(R.id.container, frag, frag.getTag());
@@ -82,17 +83,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         MenuItem homeItem = mBottomNav.getMenu().getItem(0);
+        // Go back to HomeFragment if return button is pressed on a different fragment
         if (mSelectedItem != homeItem.getItemId()) {
             launchHomeFragment();
         } else {
+            // Default behaviour
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
     }
 
     @Override

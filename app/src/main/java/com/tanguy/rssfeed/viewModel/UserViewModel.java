@@ -3,9 +3,11 @@ package com.tanguy.rssfeed.viewModel;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 
+import com.tanguy.rssfeed.R;
 import com.tanguy.rssfeed.RSSFeedApplication;
 import com.tanguy.rssfeed.model.User;
 import com.tanguy.rssfeed.service.RetrofitFactory;
@@ -17,6 +19,8 @@ public class UserViewModel {
     private String passwordConfirmation;
     private User user;
     private RetrofitFactory retrofitFactory = RSSFeedApplication.getInstance().getRetrofitFactory();
+    private SharedPreferences sharedPreferences = RSSFeedApplication.getInstance().getSharedPreferences();
+
 
     public UserViewModel(Context context) {
         this.context = context;
@@ -51,6 +55,8 @@ public class UserViewModel {
         if (user.loginValidation()) {
             Log.d(TAG, user.login);
 //            retrofitFactory.loginUser(user);
+            sharedPreferences.edit().putString(context.getString(R.string.token), "token").apply();
+            renderMainActivity();
         } else {
             Log.e(TAG, "Missing parameters");
         }
@@ -71,6 +77,13 @@ public class UserViewModel {
     }
 
     public void renderLogin(View view) {
+        // Finish Signup activity to go back to LoginActivity
+        if (context instanceof Activity) {
+            ((Activity) context).finish();
+        }
+    }
+
+    public void renderMainActivity() {
         // Finish Signup activity to go back to LoginActivity
         if (context instanceof Activity) {
             ((Activity) context).finish();

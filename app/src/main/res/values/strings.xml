@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">RSSFeed</string>
-    <string name="item">Item</string>
+    <string name="logo">Logo</string>
 
     <!--Menu-->
     <string name="home">Home</string>
@@ -8,14 +8,21 @@
     <string name="search">Search</string>
     <string name="settings">Settings</string>
 
-
-    <string name="logo">Logo</string>
+    <!--Login and sign up pages-->
     <string name="password">Password</string>
     <string name="passwordConfirmation">Confirm password</string>
     <string name="askForNewAccount">No account yet? Create one</string>
     <string name="login">Login</string>
     <string name="email">Email</string>
     <string name="createAccount">Create Account</string>
-    <string name="alreadyMember">Already a member? Login</string>
+    <string name="alreadyMember">Already a member ? Login</string>
+    <string name="token">token</string>
+
+    <!--Errors-->
     <string name="serverNotReachable">Sorry but the server is currently not reachable.</string>
+
+    <!--Preferences-->
+    <string name="account">Account</string>
+    <string name="rememberMe">Remember me</string>
+    <string name="rememberMeSummary">You\'ll be logged automatically each time</string>
 </resources>

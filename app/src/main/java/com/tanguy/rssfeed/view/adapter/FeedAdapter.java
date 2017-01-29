@@ -7,16 +7,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.tanguy.rssfeed.R;
-import com.tanguy.rssfeed.model.Channel;
+import com.tanguy.rssfeed.model.Feed;
 
 import java.util.List;
 
-public class ChannelAdapter extends RecyclerView.Adapter<ChannelAdapter.MyViewHolder> {
+public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.MyViewHolder> {
 
-    private List<Channel> channelList;
+    private List<Feed> feedList;
 
-    public ChannelAdapter(List<Channel> channelList) {
-        this.channelList = channelList;
+    public FeedAdapter(List<Feed> feedList) {
+        this.feedList = feedList;
     }
 
     @Override
@@ -29,25 +29,23 @@ public class ChannelAdapter extends RecyclerView.Adapter<ChannelAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Channel channel = channelList.get(position);
-        holder.title.setText(channel.title);
-        holder.description.setText(channel.description);
-        holder.articleNumber.setText(String.valueOf(channel.article_number));
+        Feed feed = feedList.get(position);
+        holder.title.setText(feed.title);
+        holder.content.setText(feed.content);
     }
 
     @Override
     public int getItemCount() {
-        return channelList.size();
+        return feedList.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView title, articleNumber, description;
+        TextView title, content;
 
         MyViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.title);
-            description = (TextView) view.findViewById(R.id.description);
-            articleNumber = (TextView) view.findViewById(R.id.article_number);
+            content = (TextView) view.findViewById(R.id.description);
         }
     }
 }

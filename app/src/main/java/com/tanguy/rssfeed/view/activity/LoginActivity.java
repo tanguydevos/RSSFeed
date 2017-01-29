@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.tanguy.rssfeed.R;
 import com.tanguy.rssfeed.databinding.LoginActivityBinding;
-import com.tanguy.rssfeed.model.User;
 import com.tanguy.rssfeed.viewModel.UserViewModel;
 
 public class LoginActivity extends AppCompatActivity {
