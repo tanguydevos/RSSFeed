@@ -3,11 +3,7 @@ package com.tanguy.rssfeed.service;
 import org.json.JSONObject;
 
 public interface CallBackInterface {
-    void loginSuccess();
+    void authenticateSuccess(JSONObject token);
 
-    void loginError();
-
-    void signupSuccess(JSONObject token);
-
-    void signupError(JSONObject token);
+    void authenticateError(JSONObject token);
 }

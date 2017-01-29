@@ -18,6 +18,7 @@ import com.tanguy.rssfeed.view.fragment.HomeFragment;
 import com.tanguy.rssfeed.view.fragment.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
+    static final int LOGGED = 1;  // The request code
     private static final String TAG = "MainActivity";
     private SharedPreferences sharedPreferences = RSSFeedApplication.getInstance().getSharedPreferences();
     private BottomNavigationView mBottomNav;
@@ -40,12 +41,22 @@ public class MainActivity extends AppCompatActivity {
         // If token doesn't exist, start LoginActivity
         if (!sharedPreferences.getBoolean("rememberMe", true)
                 || sharedPreferences.getString("token", null) == null) {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
+            Intent i = new Intent(this, LoginActivity.class);
+            startActivityForResult(i, 1);
         } else {
-
             // Launch by default the home fragment
             launchHomeFragment();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == LOGGED) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                launchHomeFragment();
+            }
         }
     }
 

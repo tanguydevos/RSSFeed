@@ -16,12 +16,13 @@ public class User {
 
     // Validates if user's attributes are OK for a login attempt
     public boolean loginValidation() {
-        return (this.login != null && this.password != null);
+        return (this.login != null && this.password != null && !this.login.isEmpty() && !this.password.isEmpty());
     }
 
     // Validates if user's attributes are OK for a signup attempt
     public boolean signupValidation(String passwordConfirmation) {
-        return this.login != null && this.password != null && passwordConfirmation != null;
+        return this.login != null && this.password != null && passwordConfirmation != null
+                && !this.login.isEmpty() && !this.password.isEmpty() && !passwordConfirmation.isEmpty();
     }
 
     // Validates if user's attributes are OK for a signup attempt

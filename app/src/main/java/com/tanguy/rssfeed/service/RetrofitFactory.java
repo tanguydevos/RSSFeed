@@ -42,19 +42,18 @@ public class RetrofitFactory {
 
     // Attempt to login the user
     public void loginUser(final UserViewModel userViewModel, User user) {
-        Call<ResponseBody> call = service.loginUser(user);
+        Call<ResponseBody> call = service.loginUser(user.login, user.password);
         call.enqueue(new Callback<ResponseBody>() {
 
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 Log.d(TAG, response.raw().toString());
                 try {
+                    JSONObject res = new JSONObject(response.body().string());
                     if (response.isSuccessful()) {
-                        userViewModel.loginSuccess();
-                        System.out.println(response.body().string());
+                        userViewModel.authenticateSuccess(res);
                     } else {
-                        userViewModel.loginError();
-                        System.out.println(response.errorBody().string());
+                        userViewModel.authenticateError(res);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -79,9 +78,9 @@ public class RetrofitFactory {
                 try {
                     JSONObject res = new JSONObject(response.body().string());
                     if (response.isSuccessful()) {
-                        userViewModel.signupSuccess(res);
+                        userViewModel.authenticateSuccess(res);
                     } else {
-                        userViewModel.signupError(res);
+                        userViewModel.authenticateError(res);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
