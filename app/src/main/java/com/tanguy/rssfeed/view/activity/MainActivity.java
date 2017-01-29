@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (frag != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.add(R.id.container, frag, frag.getTag());
+            ft.replace(R.id.container, frag, frag.getTag());
             ft.commit();
         }
     }

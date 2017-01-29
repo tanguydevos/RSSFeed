@@ -9,10 +9,6 @@ import android.view.ViewGroup;
 
 import com.tanguy.rssfeed.R;
 
-/**
- * Created by Tanguy on 28/01/2017.
- */
-
 public class HomeFragment extends Fragment {
 
     public static Fragment newInstance() {

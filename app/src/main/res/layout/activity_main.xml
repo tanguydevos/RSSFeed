@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:background="@color/colorPrimary"
-        app:itemBackground="@android:color/transparent"
+        app:itemBackground="?android:attr/selectableItemBackground"
         app:itemIconTint="@drawable/selector_item"
         app:itemTextColor="@drawable/selector_item"
         design:menu="@menu/bottom_navigation_main" />
