@@ -14,7 +14,6 @@ import com.tanguy.rssfeed.R;
 import com.tanguy.rssfeed.RSSFeedApplication;
 import com.tanguy.rssfeed.view.fragment.AddChannelFragment;
 import com.tanguy.rssfeed.view.fragment.ChannelFragment;
-import com.tanguy.rssfeed.view.fragment.HomeFragment;
 import com.tanguy.rssfeed.view.fragment.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -65,9 +64,6 @@ public class MainActivity extends AppCompatActivity {
         // init corresponding fragment
         switch (item.getItemId()) {
             case R.id.action_home:
-                frag = HomeFragment.newInstance();
-                break;
-            case R.id.action_channel:
                 frag = ChannelFragment.newInstance();
                 break;
             case R.id.action_search:

@@ -8,15 +8,18 @@ import android.widget.TextView;
 
 import com.tanguy.rssfeed.R;
 import com.tanguy.rssfeed.model.Channel;
+import com.tanguy.rssfeed.service.RecyclerViewClickListener;
 
 import java.util.List;
 
 public class ChannelAdapter extends RecyclerView.Adapter<ChannelAdapter.MyViewHolder> {
 
     private List<Channel> channelList;
+    private RecyclerViewClickListener itemListener;
 
-    public ChannelAdapter(List<Channel> channelList) {
+    public ChannelAdapter(List<Channel> channelList, RecyclerViewClickListener itemListener) {
         this.channelList = channelList;
+        this.itemListener = itemListener;
     }
 
     @Override
@@ -40,7 +43,7 @@ public class ChannelAdapter extends RecyclerView.Adapter<ChannelAdapter.MyViewHo
         return channelList.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView title, articleNumber, description;
 
         MyViewHolder(View view) {
@@ -48,6 +51,13 @@ public class ChannelAdapter extends RecyclerView.Adapter<ChannelAdapter.MyViewHo
             title = (TextView) view.findViewById(R.id.title);
             description = (TextView) view.findViewById(R.id.description);
             articleNumber = (TextView) view.findViewById(R.id.article_number);
+            view.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            itemListener.recyclerViewListClicked(v, this.getLayoutPosition());
+        }
+
     }
 }

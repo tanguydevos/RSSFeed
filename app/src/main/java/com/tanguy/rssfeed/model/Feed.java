@@ -3,14 +3,27 @@ package com.tanguy.rssfeed.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Feed {
-    @JsonProperty("title")
+    @JsonProperty
     public String title;
-    @JsonProperty("content")
-    public String content;
-    @JsonProperty("url")
-    public String url;
-    @JsonProperty("ttl")
-    public String ttl;
+
+    @JsonProperty
+    public String link;
+
+    @JsonProperty(value = "comments_url")
+    public String commentsUrl;
+
+    @JsonProperty(value = "publication_date")
+    public String publicationDate;
+
+    @JsonProperty
+    public String creator;
+
+    @JsonProperty
+    public String guid;
+
+    @JsonProperty
+    public String description;
+
 
     public Feed() {
         super();

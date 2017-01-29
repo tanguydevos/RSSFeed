@@ -10,12 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.tanguy.rssfeed.R;
-import com.tanguy.rssfeed.viewModel.ChannelViewModel;
+import com.tanguy.rssfeed.viewModel.FeedViewModel;
 
-public class ChannelFragment extends Fragment {
+public class FeedFragment extends Fragment {
 
     public static Fragment newInstance() {
-        return new ChannelFragment();
+        return new FeedFragment();
     }
 
 
@@ -23,7 +23,7 @@ public class ChannelFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.channel_fragment, container, false);
+        return inflater.inflate(R.layout.feed_fragment, container, false);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class ChannelFragment extends Fragment {
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
-        ChannelViewModel channelViewModel = new ChannelViewModel(getActivity(), recyclerView, progressBar);
+        FeedViewModel feedViewModel = new FeedViewModel(getActivity(), recyclerView, progressBar);
 
         // retrieve text and color from bundle or savedInstanceState
         if (savedInstanceState == null) {

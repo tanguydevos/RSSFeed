@@ -3,8 +3,10 @@ package com.tanguy.rssfeed.service;
 import android.util.Log;
 
 import com.tanguy.rssfeed.model.Channel;
+import com.tanguy.rssfeed.model.Feed;
 import com.tanguy.rssfeed.model.User;
 import com.tanguy.rssfeed.viewModel.ChannelViewModel;
+import com.tanguy.rssfeed.viewModel.FeedViewModel;
 import com.tanguy.rssfeed.viewModel.UserViewModel;
 
 import org.json.JSONObject;
@@ -99,7 +101,7 @@ public class RetrofitFactory {
         });
     }
 
-    // Attempt to signup the guest
+    // Attempt to get channels from API
     public void getChannels(final ChannelViewModel channelViewModel, String token) {
         Log.d(TAG, token);
         Call<List<Channel>> call = service.getChannels(token);
@@ -121,6 +123,32 @@ public class RetrofitFactory {
 
             @Override
             public void onFailure(Call<List<Channel>> call, Throwable t) {
+                Log.d(TAG, call.toString());
+                Log.e(TAG, t.getMessage());
+            }
+        });
+    }
+
+    public void getChannel(final FeedViewModel feedViewModel, int id) {
+        Call<List<Feed>> call = service.getChannel("channels/" + id + "/items");
+        call.enqueue(new Callback<List<Feed>>() {
+
+            @Override
+            public void onResponse(Call<List<Feed>> call, Response<List<Feed>> response) {
+                Log.d(TAG, response.raw().toString());
+                try {
+                    if (response.isSuccessful()) {
+                        feedViewModel.getFeedsSuccess(response.body());
+                    } else {
+                        feedViewModel.getFeedsError(response.body());
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Feed>> call, Throwable t) {
                 Log.d(TAG, call.toString());
                 Log.e(TAG, t.getMessage());
             }
