@@ -11,14 +11,14 @@ import android.widget.Toast;
 import com.tanguy.rssfeed.R;
 import com.tanguy.rssfeed.RSSFeedApplication;
 import com.tanguy.rssfeed.model.User;
-import com.tanguy.rssfeed.service.CallBackInterface;
+import com.tanguy.rssfeed.service.CallBackAuthenticate;
 import com.tanguy.rssfeed.service.RetrofitFactory;
 import com.tanguy.rssfeed.view.activity.SignupActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class UserViewModel implements CallBackInterface {
+public class UserViewModel implements CallBackAuthenticate {
     private static final String TAG = "UserViewModel";
     private Context context;
     private String passwordConfirmation;

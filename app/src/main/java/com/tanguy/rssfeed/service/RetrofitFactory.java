@@ -2,11 +2,14 @@ package com.tanguy.rssfeed.service;
 
 import android.util.Log;
 
+import com.tanguy.rssfeed.model.Channel;
 import com.tanguy.rssfeed.model.User;
+import com.tanguy.rssfeed.viewModel.ChannelViewModel;
 import com.tanguy.rssfeed.viewModel.UserViewModel;
 
 import org.json.JSONObject;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -20,6 +23,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 public class RetrofitFactory {
     private static final String TAG = "RetrofitFactory";
     private final static String BASE_URL = "https://javale.herokuapp.com/";
+
     private RetrofitService service;
 
     public RetrofitFactory() {
@@ -89,6 +93,34 @@ public class RetrofitFactory {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.d(TAG, call.toString());
+                Log.e(TAG, t.getMessage());
+            }
+        });
+    }
+
+    // Attempt to signup the guest
+    public void getChannels(final ChannelViewModel channelViewModel, String token) {
+        Log.d(TAG, token);
+        Call<List<Channel>> call = service.getChannels(token);
+        call.enqueue(new Callback<List<Channel>>() {
+
+            @Override
+            public void onResponse(Call<List<Channel>> call, Response<List<Channel>> response) {
+                Log.d(TAG, response.raw().toString());
+                try {
+                    if (response.isSuccessful()) {
+                        channelViewModel.getChannelsSuccess(response.body());
+                    } else {
+                        channelViewModel.getChannelsError(response.body());
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Channel>> call, Throwable t) {
                 Log.d(TAG, call.toString());
                 Log.e(TAG, t.getMessage());
             }
