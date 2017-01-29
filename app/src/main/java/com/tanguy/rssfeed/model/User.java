@@ -20,7 +20,12 @@ public class User {
     }
 
     // Validates if user's attributes are OK for a signup attempt
-    public boolean signupValidation(String password) {
-        return (this.login != null && this.password != null && this.password.equals(password));
+    public boolean signupValidation(String passwordConfirmation) {
+        return this.login != null && this.password != null && passwordConfirmation != null;
+    }
+
+    // Validates if user's attributes are OK for a signup attempt
+    public boolean comparePasswords(String password, String passwordConfirmation) {
+        return this.password.equals(passwordConfirmation);
     }
 }

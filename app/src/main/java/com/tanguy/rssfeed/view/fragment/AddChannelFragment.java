@@ -9,10 +9,10 @@ import android.view.ViewGroup;
 
 import com.tanguy.rssfeed.R;
 
-public class SearchFragment extends Fragment {
+public class AddChannelFragment extends Fragment {
 
     public static Fragment newInstance() {
-        return new SearchFragment();
+        return new AddChannelFragment();
     }
 
 

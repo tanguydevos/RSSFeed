@@ -19,7 +19,9 @@
     <string name="token">token</string>
 
     <!--Errors-->
+    <string name="passwordConfirmationError">Password confirmation doesn\'t match</string>
     <string name="serverNotReachable">Sorry but the server is currently not reachable.</string>
+    <string name="missingParameters">Missing parameters</string>
 
     <!--Preferences-->
     <string name="account">Account</string>

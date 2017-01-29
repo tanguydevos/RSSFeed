@@ -3,6 +3,9 @@ package com.tanguy.rssfeed.service;
 import android.util.Log;
 
 import com.tanguy.rssfeed.model.User;
+import com.tanguy.rssfeed.viewModel.UserViewModel;
+
+import org.json.JSONObject;
 
 import java.util.concurrent.TimeUnit;
 
@@ -16,7 +19,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 
 public class RetrofitFactory {
     private static final String TAG = "RetrofitFactory";
-    private final static String BASE_URL = "http://lightthemup.fr.nf:3000/";
+    private final static String BASE_URL = "https://javale.herokuapp.com/";
     private RetrofitService service;
 
     public RetrofitFactory() {
@@ -38,7 +41,7 @@ public class RetrofitFactory {
     }
 
     // Attempt to login the user
-    public void loginUser(User user) {
+    public void loginUser(final UserViewModel userViewModel, User user) {
         Call<ResponseBody> call = service.loginUser(user);
         call.enqueue(new Callback<ResponseBody>() {
 
@@ -47,8 +50,10 @@ public class RetrofitFactory {
                 Log.d(TAG, response.raw().toString());
                 try {
                     if (response.isSuccessful()) {
+                        userViewModel.loginSuccess();
                         System.out.println(response.body().string());
                     } else {
+                        userViewModel.loginError();
                         System.out.println(response.errorBody().string());
                     }
                 } catch (Exception e) {
@@ -64,18 +69,19 @@ public class RetrofitFactory {
     }
 
     // Attempt to signup the guest
-    public void signupUser(User user) {
-        Call<ResponseBody> call = service.signupUser(user);
+    public void signupUser(final UserViewModel userViewModel, User user) {
+        Call<ResponseBody> call = service.signupUser(user.login, user.password);
         call.enqueue(new Callback<ResponseBody>() {
 
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 Log.d(TAG, response.raw().toString());
                 try {
+                    JSONObject res = new JSONObject(response.body().string());
                     if (response.isSuccessful()) {
-                        System.out.println(response.body().string());
+                        userViewModel.signupSuccess(res);
                     } else {
-                        System.out.println(response.errorBody().string());
+                        userViewModel.signupError(res);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

@@ -12,9 +12,9 @@ import android.view.MenuItem;
 
 import com.tanguy.rssfeed.R;
 import com.tanguy.rssfeed.RSSFeedApplication;
+import com.tanguy.rssfeed.view.fragment.AddChannelFragment;
 import com.tanguy.rssfeed.view.fragment.ChannelFragment;
 import com.tanguy.rssfeed.view.fragment.HomeFragment;
-import com.tanguy.rssfeed.view.fragment.SearchFragment;
 import com.tanguy.rssfeed.view.fragment.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 frag = ChannelFragment.newInstance();
                 break;
             case R.id.action_search:
-                frag = SearchFragment.newInstance();
+                frag = AddChannelFragment.newInstance();
                 break;
             case R.id.action_settings:
                 frag = SettingsFragment.newInstance();

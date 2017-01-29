@@ -4,6 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#426bf2"
-    tools:context="com.tanguy.rssfeed.view.fragment.SearchFragment">
+    tools:context="com.tanguy.rssfeed.view.fragment.AddChannelFragment">
 
 </RelativeLayout>
