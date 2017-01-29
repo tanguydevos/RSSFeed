@@ -30,9 +30,11 @@ public class FeedFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        Bundle bundle = this.getArguments();
+        int position = bundle.getInt("position", 5);
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
-        FeedViewModel feedViewModel = new FeedViewModel(getActivity(), recyclerView, progressBar);
+        FeedViewModel feedViewModel = new FeedViewModel(getActivity(), recyclerView, progressBar, position);
 
         // retrieve text and color from bundle or savedInstanceState
         if (savedInstanceState == null) {
@@ -45,4 +47,5 @@ public class FeedFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
     }
+
 }

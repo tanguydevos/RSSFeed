@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Channel {
     @JsonProperty("id")
-    public Long id;
+    public Integer id;
     @JsonProperty("title")
     public String title;
     @JsonProperty("link")

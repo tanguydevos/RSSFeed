@@ -31,4 +31,8 @@ interface RetrofitService {
     @GET
     Call<List<Feed>> getChannel(@Url String url);
 
+    @FormUrlEncoded
+    @POST("rss/new")
+    Call<ResponseBody> addChannel(@Field("token") String token, @Field("rssUrl") String url);
+
 }

@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -29,6 +30,7 @@ public class ChannelViewModel implements CallBackChannel, RecyclerViewClickListe
     private static final SharedPreferences sharedPreferences = RSSFeedApplication.getInstance().getSharedPreferences();
     private RecyclerView recyclerView;
     private Context context;
+    private List<Channel> channelList;
     private ProgressBar progressBar;
 
     public ChannelViewModel(Context context, RecyclerView recyclerView, ProgressBar progressBar) {
@@ -42,12 +44,16 @@ public class ChannelViewModel implements CallBackChannel, RecyclerViewClickListe
     public void recyclerViewListClicked(View v, int position) {
         System.out.println(position);
         Fragment FeedFragment = new FeedFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("position", channelList.get(position).id);
+        FeedFragment.setArguments(bundle);
         FragmentTransaction ft = ((Activity) context).getFragmentManager().beginTransaction();
         ft.replace(R.id.container, FeedFragment, FeedFragment.getTag());
         ft.commit();
     }
 
     public void getChannelsSuccess(List<Channel> channels) {
+        channelList = channels;
         progressBar.setVisibility(View.GONE);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
         ChannelAdapter channelAdapter = new ChannelAdapter(channels, this);

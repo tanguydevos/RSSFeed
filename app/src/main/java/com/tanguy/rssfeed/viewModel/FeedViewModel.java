@@ -28,11 +28,11 @@ public class FeedViewModel implements CallBackFeed, RecyclerViewClickListener {
     private ProgressBar progressBar;
     private List<Feed> feeds;
 
-    public FeedViewModel(Context context, RecyclerView recyclerView, ProgressBar progressBar) {
+    public FeedViewModel(Context context, RecyclerView recyclerView, ProgressBar progressBar, Integer position) {
         this.context = context;
         this.recyclerView = recyclerView;
         this.progressBar = progressBar;
-        retrofitFactory.getChannel(this, 4);
+        retrofitFactory.getChannel(this, position);
     }
 
     @Override

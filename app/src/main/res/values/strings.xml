@@ -5,7 +5,7 @@
     <!--Menu-->
     <string name="home">Home</string>
     <string name="channels">Channel</string>
-    <string name="search">Search</string>
+    <string name="addChannel">Add</string>
     <string name="settings">Settings</string>
 
     <!--Login and sign up pages-->
@@ -13,10 +13,14 @@
     <string name="passwordConfirmation">Confirm password</string>
     <string name="askForNewAccount">No account yet? Create one</string>
     <string name="login">Login</string>
-    <string name="email">Email</string>
     <string name="createAccount">Create Account</string>
     <string name="alreadyMember">Already a member ? Login</string>
     <string name="token">token</string>
+
+    <!-- Add Channel-->
+    <string name="RSSLink">RSS link</string>
+    <string name="submit">Submit</string>
+    <string name="addedRss">RSS added with success</string>
 
     <!--Errors-->
     <string name="passwordConfirmationError">Password confirmation doesn\'t match</string>

@@ -5,6 +5,7 @@ import android.util.Log;
 import com.tanguy.rssfeed.model.Channel;
 import com.tanguy.rssfeed.model.Feed;
 import com.tanguy.rssfeed.model.User;
+import com.tanguy.rssfeed.viewModel.AddChannelViewModel;
 import com.tanguy.rssfeed.viewModel.ChannelViewModel;
 import com.tanguy.rssfeed.viewModel.FeedViewModel;
 import com.tanguy.rssfeed.viewModel.UserViewModel;
@@ -149,6 +150,33 @@ public class RetrofitFactory {
 
             @Override
             public void onFailure(Call<List<Feed>> call, Throwable t) {
+                Log.d(TAG, call.toString());
+                Log.e(TAG, t.getMessage());
+            }
+        });
+    }
+
+    public void addChannel(final AddChannelViewModel addChannelViewModel, String token, String url) {
+        Log.d(TAG, token);
+        Call<ResponseBody> call = service.addChannel(token, url);
+        call.enqueue(new Callback<ResponseBody>() {
+
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.d(TAG, response.raw().toString());
+                try {
+                    if (response.isSuccessful()) {
+                        addChannelViewModel.addSuccess();
+                    } else {
+                        addChannelViewModel.addError();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.d(TAG, call.toString());
                 Log.e(TAG, t.getMessage());
             }

@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_home:
                 frag = ChannelFragment.newInstance();
                 break;
-            case R.id.action_search:
+            case R.id.action_addChannel:
                 frag = AddChannelFragment.newInstance();
                 break;
             case R.id.action_settings:
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         MenuItem homeItem = mBottomNav.getMenu().getItem(0);
-        // Go back to HomeFragment if return button is pressed on a different fragment
+        // Go back to FeedFragment if return button is pressed on a different fragment
         if (mSelectedItem != homeItem.getItemId()) {
             launchHomeFragment();
         } else {

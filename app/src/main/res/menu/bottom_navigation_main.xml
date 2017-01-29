@@ -8,10 +8,10 @@
         android:title="@string/home"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_search"
+        android:id="@+id/action_addChannel"
         android:enabled="true"
-        android:icon="@drawable/ic_search_white_24px"
-        android:title="@string/search"
+        android:icon="@drawable/ic_add_white_24px"
+        android:title="@string/addChannel"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_settings"

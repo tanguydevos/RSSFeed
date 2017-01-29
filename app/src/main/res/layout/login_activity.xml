@@ -40,7 +40,7 @@
                     android:id="@+id/input_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/email"
+                    android:hint="@string/login"
                     android:inputType="text"
                     android:text="@={userViewModel.login}" />
             </android.support.design.widget.TextInputLayout>
