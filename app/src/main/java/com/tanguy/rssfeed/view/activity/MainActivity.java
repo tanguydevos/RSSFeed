@@ -1,12 +1,12 @@
 package com.tanguy.rssfeed.view.activity;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +15,8 @@ import com.tanguy.rssfeed.R;
 import com.tanguy.rssfeed.RSSFeedApplication;
 import com.tanguy.rssfeed.view.fragment.ChannelFragment;
 import com.tanguy.rssfeed.view.fragment.HomeFragment;
+import com.tanguy.rssfeed.view.fragment.SearchFragment;
+import com.tanguy.rssfeed.view.fragment.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -55,12 +57,10 @@ public class MainActivity extends AppCompatActivity {
                 frag = ChannelFragment.newInstance();
                 break;
             case R.id.action_search:
-//                frag = MenuFragment.newInstance(getString(R.string.text_search),
-//                        getColorFromRes(R.color.color_search));
+                frag = SearchFragment.newInstance();
                 break;
             case R.id.action_settings:
-//                frag = MenuFragment.newInstance(getString(R.string.text_search),
-//                        getColorFromRes(R.color.color_search));
+                frag = SettingsFragment.newInstance();
                 break;
         }
 
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         mSelectedItem = item.getItemId();
 
         if (frag != null) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
             ft.replace(R.id.container, frag, frag.getTag());
             ft.commit();
         }
