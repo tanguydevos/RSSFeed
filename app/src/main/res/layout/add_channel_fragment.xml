@@ -8,11 +8,6 @@
             type="com.tanguy.rssfeed.viewModel.AddChannelViewModel" />
     </data>
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:fitsSystemWindows="true">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,5 +45,4 @@
                 android:text="@string/submit" />
 
         </LinearLayout>
-    </ScrollView>
 </layout>

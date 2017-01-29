@@ -30,7 +30,7 @@ public class AddChannelFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        AddChannelFragmentBinding binding = DataBindingUtil.setContentView(getActivity(), R.layout.add_channel_fragment);
+        AddChannelFragmentBinding binding = DataBindingUtil.bind(view);
         AddChannelViewModel addChannelViewModel = new AddChannelViewModel(getActivity());
         binding.setAddChannelViewModel(addChannelViewModel);
         // retrieve text and color from bundle or savedInstanceState
